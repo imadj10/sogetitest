@@ -5,9 +5,17 @@ on: push
 jobs:
   greet:
     runs-on: ubuntu-latest
+  strategy:
+   matrix:
+     python-version: [3.8, 3.9, 3.10]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+        - uses: actions/setup-pyhton@v5
+         with:
+           python-version: ${{ matrix.python-version }}
+           
 
       - name: Say Hello
         run: echo "Hello, Elizabeth, Imad and Mick, to this trial for actions!"
